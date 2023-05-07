@@ -9,3 +9,7 @@ hospital - диаграмма поликлиники
 strategy - паттерн стратегия
 
 template_method - паттерн шаблонный метод
+
+iterator - итератор
+
+visitor - посетитель

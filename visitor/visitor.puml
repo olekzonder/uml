@@ -1,0 +1,40 @@
+@startuml
+
+left to right direction
+class Post {
+    -content: str
+    +accept(visitor: Visitor): void
+}
+
+class Comment {
+    -content: str
+    +accept(visitor: Visitor): void
+}
+
+class User {
+    -name: str
+    -posts: List[Post]
+    -comments: List[Comment]
+    +add_post(post: Post): void
+    +add_comment(comment: Comment): void
+}
+
+interface Visitor {
+    +visit_post(post: Post): void
+    +visit_comment(comment: Comment): void
+}
+
+class ContentModerator {
+    +visit_post(post: Post): void
+    +visit_comment(comment: Comment): void
+}
+
+User -> Post
+User -> Comment
+
+Post -> Visitor
+Comment -> Visitor
+
+ContentModerator -> Visitor
+
+@enduml

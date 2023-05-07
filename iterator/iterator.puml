@@ -1,0 +1,33 @@
+@startuml
+left to right direction
+class Song {
+    -title: str
+    -artist: str
+    -album: str
+    +__init__(title: str, artist: str, album: str)
+}
+
+class Playlist {
+    -songs: List[Song]
+    +__init__()
+    +add_song(song: Song): void
+    +__iter__(): PlaylistIterator
+}
+
+class PlaylistIterator {
+    -index: int
+    +__next__(): Song
+}
+
+class MusicPlayer {
+    -playlist: Playlist
+    +__init__()
+    +add_song(song: Song): void
+    +play(): void
+}
+
+Song --> Playlist
+Playlist --> PlaylistIterator
+MusicPlayer --> Playlist
+
+@enduml
