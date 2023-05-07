@@ -1,0 +1,29 @@
+@startuml
+left to right direction
+interface PaymentStrategy{
+    + processPayment(): void
+}
+
+class CreditCardPayment {
+    + processPayment(): void
+}
+
+class QiwiPayment {
+    + processPayment(): void
+}
+
+class BitcoinPayment {
+    + processPayment(): void
+}
+
+class PaymentProcessor {
+    - payment: PaymentStrategy
+    + setPayment(payment: PaymentStrategy): void
+    + processPayment(): void
+}
+
+PaymentStrategy <|-- CreditCardPayment
+PaymentStrategy <|-- QiwiPayment
+PaymentStrategy <|-- BitcoinPayment
+PaymentProcessor --|> PaymentStrategy
+@enduml

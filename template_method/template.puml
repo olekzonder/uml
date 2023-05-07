@@ -1,0 +1,43 @@
+@startuml
+abstract class ReportGenerator {
+    +generate_report()
+    {abstract} +get_data_source()
+    {abstract} +format_data(data_source)
+    {abstract} +generate_specific_report(formatted_data)
+}
+
+class SalesReportGenerator {
+    +get_data_source()
+    +format_data(data_source)
+    +generate_specific_report(formatted_data)
+}
+
+class InventoryReportGenerator {
+    +get_data_source()
+    +format_data(data_source)
+    +generate_specific_report(formatted_data)
+}
+
+class TableFormatter {
+    +format(data)
+}
+
+class ChartFormatter {
+    +format(data)
+}
+
+class PDFGenerator {
+    +generate(data, title)
+}
+
+class ExcelGenerator {
+    +generate(data, title)
+}
+
+ReportGenerator <|-- SalesReportGenerator
+ReportGenerator <|-- InventoryReportGenerator
+TableFormatter <-- SalesReportGenerator
+ChartFormatter <-- InventoryReportGenerator
+PDFGenerator <-- SalesReportGenerator
+ExcelGenerator <-- InventoryReportGenerator
+@enduml
