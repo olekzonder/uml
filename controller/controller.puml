@@ -1,0 +1,40 @@
+@startuml
+class OnlineMarketplace {
+    +registerSeller(seller: Seller)
+    +registerBuyer(buyer: Buyer)
+    +notifySeller(product: Product, buyer: Buyer)
+    +notifyBuyer(product: Product, seller: Seller)
+}
+
+interface Seller {
+    +addProduct(product: Product)
+    +removeProduct(product: Product)
+    +updateProduct(product: Product)
+    +getProducts(): List<Product>
+}
+
+interface Buyer {
+    +searchProduct(keyword: String): List<Product>
+    +addToCart(product: Product)
+    +removeFromCart(product: Product)
+    +checkout(): Order
+}
+
+class Product {
+    -name: String
+    -price: Double
+    -description: String
+}
+
+class Order {
+    -buyer: Buyer
+    -products: List<Product>
+    -totalPrice: Double
+}
+
+OnlineMarketplace -> Seller
+OnlineMarketplace -> Buyer
+OnlineMarketplace -> Product
+OnlineMarketplace -> Order
+
+@enduml

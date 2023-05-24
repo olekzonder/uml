@@ -1,0 +1,30 @@
+@startuml
+interface IDatabase {
+    + connect()
+    + query()
+}
+
+class MySQLDatabase {
+    + connect()
+    + query()
+}
+
+class MongoDB {
+    + connect()
+    + find()
+}
+
+class DatabaseAdapter {
+    - database: IDatabase
+    + connect()
+    + query()
+}
+
+MySQLDatabase -> IDatabase
+MongoDB -> IDatabase
+DatabaseAdapter -> IDatabase
+
+DatabaseAdapter --> MySQLDatabase: adapts
+DatabaseAdapter --> MongoDB: adapts
+
+@enduml

@@ -1,0 +1,43 @@
+@startuml
+class Car {
+  +engine: Engine
+  +wheels: Wheels[]
+  +interior: Interior
+}
+
+interface Builder {
+  +buildEngine()
+  +buildWheels()
+  +buildInterior()
+  +getResult(): Car
+}
+
+class CarBuilder implements Builder {
+  -car: Car
+  +buildEngine()
+  +buildWheels()
+  +buildInterior()
+  +getResult(): Car
+}
+
+class Engine {
+  +type: String
+  +horsepower: int
+}
+
+class Wheels {
+  +size: int
+  +material: String
+}
+
+class Interior {
+  +seats: int
+  +color: String
+}
+
+CarBuilder -> Builder
+CarBuilder --> Car
+CarBuilder -> Engine
+CarBuilder -> Wheels
+CarBuilder -> Interior
+@enduml

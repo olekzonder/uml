@@ -1,0 +1,50 @@
+@startuml
+interface AbstractFactory {
+    +createBeverage(): Beverage
+    +createSnack(): Snack
+}
+
+interface Beverage {
+    +getName(): String
+}
+
+interface Snack {
+    +getName(): String
+}
+
+class FastFoodFactory {
+    +createBeverage(): Beverage
+    +createSnack(): Snack
+}
+
+class HealthyFoodFactory {
+    +createBeverage(): Beverage
+    +createSnack(): Snack
+}
+
+class Burger implements Snack {
+    +getName(): String
+}
+
+class Salad implements Snack {
+    +getName(): String
+}
+
+class Soda implements Beverage {
+    +getName(): String
+}
+
+class Juice implements Beverage {
+    +getName(): String
+}
+
+AbstractFactory <|-- FastFoodFactory
+AbstractFactory <|-- HealthyFoodFactory
+
+FastFoodFactory ..> Burger
+FastFoodFactory ..> Soda
+
+HealthyFoodFactory ..> Salad
+HealthyFoodFactory ..> Juice
+
+@enduml

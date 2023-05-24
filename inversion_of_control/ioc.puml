@@ -1,0 +1,24 @@
+@startuml
+class Client {
+    -dependency: IDependency
+    +Client(dep: IDependency)
+    +doSomething(): void
+}
+
+interface IDependency {
+    +doSomethingElse(): void
+}
+
+class DependencyA {
+    +doSomethingElse(): void
+}
+
+class DependencyB {
+    +doSomethingElse(): void
+}
+
+Client -> IDependency : dependency
+Client -> IDependency : doSomethingElse()
+IDependency <|.. DependencyA
+IDependency <|.. DependencyB
+@enduml

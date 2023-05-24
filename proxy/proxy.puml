@@ -1,0 +1,36 @@
+@startuml
+interface Subject {
+    + request(): void
+}
+
+class RealSubject {
+    - expensiveOperation(): void
+    + request(): void
+}
+
+class Proxy {
+    - realSubject: RealSubject
+    + request(): void
+}
+
+class Client {
+    - subject: Subject
+    + doSomething(): void
+}
+
+Client -> Subject: uses
+Subject -> RealSubject: implements
+Proxy -> RealSubject: implements
+Client -> Proxy: uses
+
+note right of Proxy: Lazy initialization
+
+Client -> Subject: request()
+Subject -> Proxy: request()
+Proxy -> RealSubject: request()
+RealSubject -> RealSubject: expensiveOperation()
+RealSubject -> Proxy: request()
+Proxy -> Subject: request()
+Client -> Subject: request()
+
+@enduml
